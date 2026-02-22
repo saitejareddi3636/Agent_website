@@ -1,21 +1,46 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X, Sun, Moon, ChevronDown } from "lucide-react";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+  const dropdownRef = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setServicesOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
+  };
+
+  const toggleServicesDropdown = () => {
+    setServicesOpen(!servicesOpen);
+  };
+
+  const closeDropdowns = () => {
+    setServicesOpen(false);
+    setMobileOpen(false);
   };
 
   return (
@@ -33,37 +58,49 @@ export default function Navbar() {
               Home
             </Link>
           </li>
-          <li className="relative group">
-            <button className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-              Services ▾
+          <li className="relative" ref={dropdownRef}>
+            <button 
+              onClick={toggleServicesDropdown}
+              className="flex items-center gap-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+            >
+              Services 
+              <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${servicesOpen ? 'rotate-180' : ''}`} />
             </button>
             {/* Dropdown */}
-            <ul className="absolute hidden group-hover:block bg-white dark:bg-gray-800 shadow-lg rounded-lg mt-2 w-48 border border-gray-200 dark:border-gray-700">
-              <li>
-                <Link
-                  href="/services/customer-support"
-                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
-                >
-                  AI Customer Support
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/receptionist"
-                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
-                >
-                  AI Receptionist
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/assistant"
-                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
-                >
-                  Personal AI Assistant
-                </Link>
-              </li>
-            </ul>
+            {servicesOpen && (
+              <ul className="absolute top-full left-0 bg-white dark:bg-gray-800 shadow-xl rounded-lg mt-2 w-56 border border-gray-200 dark:border-gray-700 py-2 z-50">
+                <li>
+                  <Link
+                    href="/services/customer-support"
+                    onClick={closeDropdowns}
+                    className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  >
+                    <div className="font-medium text-gray-900 dark:text-white">AI Customer Support</div>
+                    <div className="text-sm text-gray-500 dark:text-gray-400">24/7 automated support</div>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/services/receptionist"
+                    onClick={closeDropdowns}
+                    className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  >
+                    <div className="font-medium text-gray-900 dark:text-white">AI Receptionist</div>
+                    <div className="text-sm text-gray-500 dark:text-gray-400">Virtual front desk assistant</div>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/services/assistant"
+                    onClick={closeDropdowns}
+                    className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  >
+                    <div className="font-medium text-gray-900 dark:text-white">Personal AI Assistant</div>
+                    <div className="text-sm text-gray-500 dark:text-gray-400">Your personal productivity partner</div>
+                  </Link>
+                </li>
+              </ul>
+            )}
           </li>
           <li>
             <Link href="/pricing" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
@@ -119,7 +156,7 @@ export default function Navbar() {
       {/* Mobile Dropdown */}
       {mobileOpen && (
         <div className="md:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-t border-gray-200 dark:border-gray-700">
-          <ul className="flex flex-col p-4 space-y-4 font-medium text-gray-700 dark:text-gray-300">
+          <ul className="flex flex-col p-4 space-y-2 font-medium text-gray-700 dark:text-gray-300">
             <li>
               <Link 
                 href="/" 
@@ -130,13 +167,32 @@ export default function Navbar() {
               </Link>
             </li>
             <li>
-              <Link 
-                href="/services" 
-                onClick={() => setMobileOpen(false)}
-                className="block py-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-              >
-                Services
-              </Link>
+              <div className="py-2">
+                <span className="text-gray-500 dark:text-gray-400 text-sm uppercase tracking-wide font-semibold">Services</span>
+                <div className="mt-2 space-y-1 pl-4">
+                  <Link 
+                    href="/services/customer-support" 
+                    onClick={() => setMobileOpen(false)}
+                    className="block py-2 text-sm hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                  >
+                    AI Customer Support
+                  </Link>
+                  <Link 
+                    href="/services/receptionist" 
+                    onClick={() => setMobileOpen(false)}
+                    className="block py-2 text-sm hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                  >
+                    AI Receptionist
+                  </Link>
+                  <Link 
+                    href="/services/assistant" 
+                    onClick={() => setMobileOpen(false)}
+                    className="block py-2 text-sm hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                  >
+                    Personal AI Assistant
+                  </Link>
+                </div>
+              </div>
             </li>
             <li>
               <Link 
