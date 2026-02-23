@@ -3,25 +3,11 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Sparkles, Cpu, Shield } from "lucide-react";
-import ParticlesBackground from "./ParticlesBackground";
 import FAQAccordion from "../components/FAQAccordion";
 import CloudsBackground from "./CloudsBackground";
-import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function Home() {
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Calculate mountain opacity based on scroll (fades out over first 400px)
-  const mountainOpacity = Math.max(0, 1 - scrollY / 400);
   const features = [
     {
       icon: <Sparkles className="w-12 h-12 text-electricCyan" />,
@@ -48,40 +34,57 @@ export default function Home() {
 
   const testimonials = [
     {
-      text: "Our customer support costs dropped by 40% after switching to their AI agents. Clients love the 24/7 response time!",
-      author: "Sarah Johnson",
-      role: "CEO, TechFlow"
+      id: 1,
+      name: "Sarah Jenkins",
+      role: "Operations Manager, TechFlow",
+      text: "Our customer support costs dropped by 40% after switching to Niro-AI. Clients love the 24/7 response time!",
+      avatar: "SJ"
     },
     {
-      text: "The AI receptionist handles bookings seamlessly. It feels like we hired a full-time assistant at a fraction of the cost.",
-      author: "Michael Lee",
-      role: "Founder, HealthFirst Clinic"
+      id: 2,
+      name: "David Chen",
+      role: "CEO, StartScale", 
+      text: "I was skeptical about AI receptionists, but Niro-AI sounds indistinguishable from a human. It booked 50+ meetings in the first week.",
+      avatar: "DC"
     },
     {
+      id: 3,
+      name: "Emily Davis",
+      role: "Entrepreneur",
       text: "My personal AI assistant helps track my diet, reminds me of meetings, and even suggests productivity tips daily!",
-      author: "Emily Davis",
-      role: "Entrepreneur"
+      avatar: "ED"
     }
   ];
 
+  /* Component for Steps */
+  function StepCard({ number, title, description }: { number: string; title: string; description: string }) {
+    return (
+      <motion.div 
+        className="relative z-10 bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 text-center"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+      >
+        <div className="w-16 h-16 mx-auto bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-2xl font-bold text-white mb-6 shadow-lg">
+          {number}
+        </div>
+        <h3 className="text-xl font-bold mb-4 text-white">{title}</h3>
+        <p className="text-gray-200">
+          {description}
+        </p>
+      </motion.div>
+    );
+  }
+
   return (
     <>
-      {/* Global Clouds Background with Parallax */}
+      {/* Global Animated Parallax Wallpaper */}
       <CloudsBackground />
 
-      {/* Hero Section with Mountain Background */}
+      {/* Hero Section */}
       <section 
-        className="relative text-white min-h-[80vh] flex items-center overflow-hidden"
+        className="relative text-white min-h-[80vh] flex items-center overflow-hidden z-10"
       >
-        {/* Mountain layer - fades on scroll */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-300 ease-out"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')`,
-            opacity: mountainOpacity,
-          }}
-        />
-        
         {/* Soft overlay for readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20"></div>
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 relative z-10">
@@ -95,10 +98,10 @@ export default function Home() {
             >
               <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6 animate-fadeInUp">
                 AI that thinks. Acts. Delivers.{" "}
-                <span className="block text-3xl md:text-5xl mt-2">Automate everything with AGEN.</span>
+                <span className="block text-3xl md:text-5xl mt-2">Automate everything with Niro-AI.</span>
               </h1>
               <p className="text-lg md:text-xl mb-8 text-gray-100 max-w-xl animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
-                AI agents for enterprise support — available 24/7, scalable, and indistinguishable from human conversation.
+                Niro-AI for enterprise support — available 24/7, scalable, and indistinguishable from human conversation.
               </p>
 
               <motion.div 
@@ -129,9 +132,11 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <img
+              <Image
                 src="/globe.svg"
                 alt="AI Globe"
+                width={500}
+                height={500}
                 className="w-[350px] md:w-[500px] drop-shadow-xl animate-float"
               />
             </motion.div>
@@ -157,7 +162,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            Trusted by businesses and individuals who rely on AI to simplify their daily tasks.
+            Trusted by businesses and individuals who rely on Niro-AI to simplify their daily tasks.
           </motion.p>
         </div>
 
@@ -171,8 +176,8 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1, duration: 0.6 }}
               >
-                <p className="text-white mb-4">"{testimonial.text}"</p>
-                <h4 className="font-semibold text-yellow-300">{testimonial.author}</h4>
+                <p className="text-white mb-4">&quot;{testimonial.text}&quot;</p>
+                <h4 className="font-semibold text-yellow-300">{testimonial.name}</h4>
                 <p className="text-sm text-gray-300">{testimonial.role}</p>
               </motion.div>
             ))}
@@ -239,7 +244,7 @@ export default function Home() {
             <div className="text-purple-400 text-4xl mb-4">🤖</div>
             <h3 className="text-xl font-semibold mb-4 text-white">No Personalization</h3>
             <p className="text-gray-200">
-              Generic chatbots forget context. Our agents remember your clients, preferences, and complete conversation history.
+              Generic chatbots forget context. Niro-AI remembers your clients, preferences, and complete conversation history.
             </p>
           </motion.div>
         </div> {/* Close .grid for Pain Points section */}
@@ -266,7 +271,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              Our AI agents are built for small businesses and busy professionals across industries.
+              Our Niro-AI solutions are built for small businesses and busy professionals across industries.
             </motion.p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -322,24 +327,11 @@ export default function Home() {
       {/* Social Proof / Use Cases */}
       <section className="relative px-6 py-20">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <motion.h2 
-              className="text-4xl font-bold text-white"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              See the Impact
-            </motion.h2>
-            <motion.p 
-              className="mt-4 text-lg text-gray-200"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-            >
-              Real-world examples of how AI agents transform businesses.
-            </motion.p>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Success Stories</h2>
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+              Real-world examples of how Niro-AI transforms businesses.
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <motion.div 
@@ -392,42 +384,44 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="max-w-7xl mx-auto px-6 py-20 bg-gradient-to-b from-gray-800 to-gray-900 text-gray-100">
-        <div className="text-center mb-12">
-          <motion.h2 
-            className="text-4xl font-bold"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            Features That Make Us Stand Out
-          </motion.h2>
-          <motion.p 
-            className="mt-4 text-lg text-gray-400"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-          >
-            Built for performance, security, and user experience.
-          </motion.p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {features.map((f, idx) => (
-            <motion.div
-              key={idx}
-              className="p-8 bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300"
-              initial={{ opacity: 0, y: 50 }}
+      <section className="py-20 bg-gray-900/40 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 text-center">
+          <div className="mb-12">
+            <motion.h2 
+              className="text-4xl font-bold text-white"
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ delay: idx * 0.2, duration: 0.6 }}
-              whileHover={{ scale: 1.05 }}
+              viewport={{ once: true }}
             >
-              <div className="flex justify-center mb-4">{f.icon}</div>
-              <h3 className="text-2xl font-semibold mb-2 text-center">{f.title}</h3>
-              <p className="text-gray-300 text-center">{f.text}</p>
-            </motion.div>
-          ))}
+              Features That Make Us Stand Out
+            </motion.h2>
+            <motion.p 
+              className="mt-4 text-lg text-gray-400"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              Built for performance, security, and user experience.
+            </motion.p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {features.map((f, idx) => (
+              <motion.div
+                key={idx}
+                className="p-8 bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ delay: idx * 0.2, duration: 0.6 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <div className="flex justify-center mb-4">{f.icon}</div>
+                <h3 className="text-2xl font-semibold mb-2 text-center">{f.title}</h3>
+                <p className="text-gray-300 text-center">{f.text}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -450,55 +444,28 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              Get your AI agent up and running in just 3 simple steps. No technical expertise required.
+              Get Niro-AI up and running in just 3 simple steps. No technical expertise required.
             </motion.p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <motion.div 
-              className="text-center bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-8 hover:bg-white/20 transition-all duration-300"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-            >
-              <div className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto mb-6">
-                1
-              </div>
-              <h3 className="text-2xl font-semibold mb-4 text-white">Sign Up</h3>
-              <p className="text-gray-200">
-                Choose your plan and create your account. Takes less than 2 minutes to get started.
-              </p>
-            </motion.div>
-            <motion.div 
-              className="text-center bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-8 hover:bg-white/20 transition-all duration-300"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-            >
-              <div className="bg-gradient-to-r from-purple-500 to-pink-600 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto mb-6">
-                2
-              </div>
-              <h3 className="text-2xl font-semibold mb-4 text-white">Customize</h3>
-              <p className="text-gray-200">
-                Train your AI agent with your business info, FAQ, and preferences. We'll help you set it up.
-              </p>
-            </motion.div>
-            <motion.div 
-              className="text-center bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-8 hover:bg-white/20 transition-all duration-300"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-            >
-              <div className="bg-gradient-to-r from-pink-500 to-red-600 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto mb-6">
-                3
-              </div>
-              <h3 className="text-2xl font-semibold mb-4 text-white">Go Live</h3>
-              <p className="text-gray-200">
-                Launch your AI agent and start serving customers 24/7. See results within 24 hours.
-              </p>
-            </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+            {/* Connecting Line (Desktop) */}
+            <div className="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 bg-gradient-to-r from-blue-500/0 via-purple-500/50 to-blue-500/0 z-0"></div>
+
+            <StepCard 
+              number="01"
+              title="Customize"
+              description="Train Niro-AI with your business info, FAQ, and preferences. We'll help you set it up."
+            />
+            <StepCard 
+              number="02"
+              title="Integrate"
+              description="Connect to your website, phone line, or WhatsApp with a simple copy-paste code."
+            />
+            <StepCard 
+              number="03"
+              title="Launch"
+              description="Launch Niro-AI and start serving customers 24/7. See results within 24 hours."
+            />
           </div>
         </div>
       </section>
@@ -566,7 +533,7 @@ export default function Home() {
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Why Book a Demo?</h2>
           <p className="text-xl mb-8 opacity-90 max-w-3xl mx-auto">
-            In just 15 minutes, see exactly how an AI agent can save your business time, 
+            In just 15 minutes, see exactly how Niro-AI can save your business time, 
             cut costs, and improve customer satisfaction. No generic pitch - this is tailored to your business.
           </p>
           

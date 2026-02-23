@@ -12,8 +12,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "AI Agents - Revolutionary Business Automation",
-  description: "AI Agents for Customer Support, Receptionist Services & Personal Assistance. Transform your business with 24/7 AI-powered solutions.",
+  title: "Niro-AI - Revolutionary Business Automation",
+  description: "Niro-AI for Customer Support, Receptionist Services & Personal Assistance. Transform your business with 24/7 AI-powered solutions.",
 };
 
 export default function RootLayout({

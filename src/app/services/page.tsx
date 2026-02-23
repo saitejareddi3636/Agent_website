@@ -8,21 +8,21 @@ export default function Services() {
   const services = [
     {
       icon: <MessageCircle className="w-16 h-16 text-electricCyan" />,
-      title: "AI Customer Support",
+      title: "Niro-AI Customer Support",
       description: "24/7 intelligent customer service that understands context and provides instant, accurate responses.",
       features: ["Multi-language support", "Instant responses", "Learning capabilities", "Human escalation"],
       price: "Starting at $199/month"
     },
     {
       icon: <Phone className="w-16 h-16 text-cyberPurple" />,
-      title: "AI Receptionist",
+      title: "Niro-AI Receptionist",
       description: "Professional phone handling, appointment scheduling, and customer screening with natural conversation.",
       features: ["Appointment booking", "Call screening", "Information gathering", "Calendar integration"],
       price: "Starting at $149/month"
     },
     {
       icon: <User className="w-16 h-16 text-neonRed" />,
-      title: "Personal AI Assistant",
+      title: "Personal Niro-AI Assistant",
       description: "Your digital companion for managing tasks, schedules, reminders, and personal productivity.",
       features: ["Task management", "Schedule optimization", "Personal reminders", "Health tracking"],
       price: "Starting at $79/month"
@@ -69,6 +69,10 @@ export default function Services() {
             >
               Comprehensive AI solutions designed to transform your business operations and personal productivity
             </motion.p>
+            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              Automate complex business logic, data entry, and research. 
+              Niro-AI scales your operations instantly.
+            </p>
           </div>
         </div>
       </section>

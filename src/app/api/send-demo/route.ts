@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
 🚀 NEW AI DEMO REQUEST
 
 📋 DEMO DETAILS:
-Agent Type: ${data.agentType}
+Solution Type: ${data.agentType}
 Timeline: ${data.timeline || 'Not specified'}
 
 🏢 BUSINESS INFORMATION:
@@ -43,51 +43,47 @@ ${data.extra || 'No additional notes provided'}
     `;
 
     // Send email to you
-    await transporter.sendMail({
-      from: `"AI Agents Demo Request" <${process.env.EMAIL_USER || "saitejaredddy2@gmail.com"}>`,
+    const notificationEmail = {
+      from: `"Niro-AI Demo Request" <${process.env.EMAIL_USER || "saitejaredddy2@gmail.com"}>`,
       to: "saitejaredddy2@gmail.com",
       subject: `🚀 New Demo Request - ${data.agentType} (${data.companyName})`,
       text: emailContent,
-    });
+    };
 
-    // Send confirmation email to the person who requested the demo
-    const confirmationEmail = `
-Hi ${data.name}!
-
-Thank you for requesting a demo of our AI agents! 🤖
-
-We're excited to show you how ${data.agentType} can transform your business operations and save you time and money.
-
-📅 WHAT'S NEXT:
-✅ Our team will review your request within 24 hours
-✅ We'll reach out to schedule your personalized 15-minute demo
-✅ You'll see exactly how AI can solve your specific challenges
-✅ Get a custom ROI calculation for your business
-
-📞 DEMO DETAILS:
-• Industry: ${data.agentType}
-• Company: ${data.companyName}
-• Timeline: ${data.timeline || 'To be discussed'}
-
-If you have any urgent questions, feel free to reply to this email or call us directly.
-
-Looking forward to showing you the future of AI automation!
-
-Best regards,
-The AI Agents Team
-
----
-🌐 Visit our website: [Your Website URL]
-📧 Email: saitejaredddy2@gmail.com
-    `;
-
-    // Send confirmation to customer
-    await transporter.sendMail({
-      from: `"AI Agents Team" <${process.env.EMAIL_USER || "saitejaredddy2@gmail.com"}>`,
+    const confirmationEmail = {
+      from: process.env.EMAIL_USER || "saitejaredddy2@gmail.com",
       to: data.email,
-      subject: `✅ Demo Request Confirmed - We'll contact you within 24 hours!`,
-      text: confirmationEmail,
-    });
+      subject: `🚀 Welcome to Niro-AI - Demo Request Confirmation`,
+      text: `Hi ${data.name},\n\nThank you for requesting a demo of Niro-AI! 🤖\n\nWe're excited to show you how ${data.agentType} can transform your business operations and save you time and money.\n\nSolution: ${data.agentType}\n\nOur team will review your request and reach out shortly to schedule a personalized walkthrough.\n\nBest regards,\nThe Niro-AI Team`,
+      html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+        <h2 style="color: #4a90e2;">Welcome to Niro-AI! 🤖</h2>
+        <p>Hi ${data.name},</p>
+        <p>Thank you for requesting a demo of <strong>Niro-AI</strong>!</p>
+        <p>We're excited to show you how <strong>${data.agentType}</strong> can transform your business operations and save you time and money.</p>
+        
+        <div style="background-color: #f0f7ff; padding: 15px; border-radius: 4px; margin: 20px 0;">
+          <h3 style="margin-top: 0; color: #333;">Your Request Details:</h3>
+          <ul style="list-style-type: none; padding-left: 0;">
+            <li style="margin-bottom: 8px;">🏢 <strong>Company:</strong> ${data.companyName}</li>
+            <li style="margin-bottom: 8px;">🤖 <strong>Niro-AI Solution:</strong> ${data.agentType}</li>
+          </ul>
+        </div>
+
+        <p>Our team will review your request and reach out shortly to schedule a personalized walkthrough tailored to your needs.</p>
+        
+        <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;" />
+        
+        <p style="color: #888; font-size: 14px;">Best regards,<br>The Niro-AI Team</p>
+      </div>
+    `
+    };
+
+    // Send emails
+    await Promise.all([
+      transporter.sendMail(notificationEmail),
+      transporter.sendMail(confirmationEmail)
+    ]);
 
     return NextResponse.json({ 
       success: true, 

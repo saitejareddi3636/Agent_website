@@ -10,7 +10,6 @@ import {
   Stethoscope,
   Home,
   Scale,
-  MapPin,
   CreditCard,
   Bell
 } from "lucide-react";
@@ -100,9 +99,9 @@ export default function Receptionist() {
             <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent mb-6">
               AI Receptionist
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Your virtual front desk that never sleeps. Perfect for restaurants, clinics, real estate, 
-              and professional services. Replace expensive staff with AI that works 24/7.
+            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              Meet your new receptionist. Niro-AI answers calls, books appointments, 
+              and greets visitors with perfect accuracy 24/7.
             </p>
           </div>
         </FadeIn>

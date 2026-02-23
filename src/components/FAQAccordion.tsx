@@ -34,8 +34,8 @@ export default function FAQAccordion() {
 
   const faqData: FAQItem[] = [
     {
-      question: "Will AI replace my human staff?",
-      answer: "No! Our AI agents are designed to augment your team, not replace them. They handle routine, repetitive tasks so your human staff can focus on complex problems, relationship building, and high-value activities. Think of AI as your 24/7 digital assistant that frees up your team for more meaningful work.",
+      question: "Will Niro-AI replace my human employees?",
+      answer: "No! Niro-AI is designed to augment your team, not replace them. It handles routine, repetitive tasks so your human staff can focus on complex problems, relationship building, and high-value activities. Think of AI as your 24/7 digital assistant that frees up your team for more meaningful work.",
       icon: Users,
       category: "Staff Concerns"
     },
@@ -80,10 +80,28 @@ export default function FAQAccordion() {
       answer: "We connect seamlessly with 500+ popular business tools including Salesforce, HubSpot, Shopify, Square, Google Calendar, Slack, and more. Our API allows custom integrations, and our team handles the technical setup for you at no extra cost.",
       icon: Zap,
       category: "Integrations"
+    },
+    {
+      question: "Can I customize Niro-AI's personality?",
+      answer: "Yes! You can define the tone, voice, and personality of your Niro-AI instance to match your brand identity. Whether you want professional, friendly, witty, or strictly formal, we can tune it to your needs.",
+      icon: Brain,
+      category: "Customization"
+    },
+    {
+      question: "How long does it take to set up?",
+      answer: "Most clients are up and running within 24-48 hours. We handle the technical setup and training based on your provided knowledge base or documentation. For complex enterprise integrations, it might take 1-2 weeks.",
+      icon: Clock,
+      category: "Implementation"
+    },
+    {
+      question: "Is my data secure?",
+      answer: "Absolutely. We use enterprise-grade encryption for all data storage and transmission. We are SOC2 compliant and never train our public models on your private business data without explicit permission.",
+      icon: Shield,
+      category: "Security"
     }
   ];
 
-  const categories = [...new Set(faqData.map(item => item.category))];
+  // const categories = [...new Set(faqData.map(item => item.category))]; 
 
   return (
     <div className="py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-purple-900/20">
