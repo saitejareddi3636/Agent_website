@@ -26,7 +26,7 @@ export default function AISupport() {
 
         <h2 className="text-3xl font-semibold text-gray-900 mt-12 mb-6">The Evolution of Customer Support</h2>
         <p className="text-gray-700 mb-6">
-          Traditional customer support relied heavily on human agents working during business hours. 
+          Traditional customer support relied heavily on human staff working during business hours. 
           This approach, while personal, had significant limitations in terms of scalability and availability.
         </p>
 
@@ -39,7 +39,7 @@ export default function AISupport() {
           <li>Handle multiple conversations simultaneously</li>
           <li>Access vast knowledge bases instantly</li>
           <li>Learn from interactions to improve responses</li>
-          <li>Escalate complex issues to human agents when needed</li>
+          <li>Escalate complex issues to human experts when needed</li>
         </ul>
 
         <h2 className="text-3xl font-semibold text-gray-900 mt-12 mb-6">The Future of Customer Support</h2>

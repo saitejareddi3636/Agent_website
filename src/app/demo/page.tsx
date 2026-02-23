@@ -67,19 +67,18 @@ export default function DemoForm() {
       } else {
         throw new Error("Failed to submit");
       }
-    } catch (error) {
+    } catch {
       alert("❌ Something went wrong. Please try again or email us directly at saitejaredddy2@gmail.com");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const getStepTitle = (stepNum: number) => {
-    switch(stepNum) {
-      case 1: return "Choose Your AI Agent";
-      case 2: return "Tell Us About Your Business";
-      case 3: return "Your Contact Information";
-      case 4: return "Additional Details";
+  const getCurrentStepTitle = () => {
+    switch(step) {
+      case 1: return "Choose Your Niro-AI";
+      case 2: return "About Your Business";
+      case 3: return "Contact Details";
       default: return "";
     }
   };
@@ -130,11 +129,11 @@ export default function DemoForm() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Book Your AI Demo
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+            Get Your Niro-AI Demo
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300">
-            Get a personalized 15-minute demo tailored to your business needs
+          <p className="text-xl text-gray-300">
+            See how Niro-AI can transform your business workflows.
           </p>
         </motion.div>
 
@@ -162,7 +161,7 @@ export default function DemoForm() {
             ))}
           </div>
           <p className="text-center text-sm text-gray-500 dark:text-gray-400">
-            Step {step} of {totalSteps}: {getStepTitle(step)}
+            Step {step} of {totalSteps}: {getCurrentStepTitle()}
           </p>
         </motion.div>
 
@@ -184,15 +183,13 @@ export default function DemoForm() {
                   transition={{ duration: 0.3 }}
                   className="space-y-6"
                 >
-                  <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">What kind of AI Agent do you need?</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">What kind of Niro-AI do you need?</h2>
+                  <div className="grid gap-4">
                     {[
-                      { value: "Restaurant AI Receptionist", icon: "🍽️", desc: "Handle reservations & orders 24/7" },
-                      { value: "Healthcare AI Assistant", icon: "🏥", desc: "Patient scheduling & inquiries" },
-                      { value: "Law Firm Legal Assistant", icon: "⚖️", desc: "Client intake & consultations" },
-                      { value: "Customer Support AI Agent", icon: "💬", desc: "24/7 customer service automation" },
-                      { value: "Real Estate AI Assistant", icon: "🏠", desc: "Lead qualification & showings" },
-                      { value: "Personal AI Assistant", icon: "🤖", desc: "Daily tasks & productivity" }
+                      { value: "Customer Support Niro-AI", icon: "💬", desc: "24/7 customer service automation" },
+                      { value: "Receptionist Niro-AI", icon: "📞", desc: "Handle calls and appointments" },
+                      { value: "Personal Assistant Niro-AI", icon: "📅", desc: "Manage schedule and tasks" },
+                      { value: "Enterprise Solution Niro-AI", icon: "🏢", desc: "Custom workflow automation" },
                     ].map((option) => (
                       <label key={option.value} className={`cursor-pointer p-4 rounded-xl border-2 transition-all duration-200 hover:shadow-lg ${
                         formData.agentType === option.value 

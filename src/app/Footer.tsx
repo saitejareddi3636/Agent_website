@@ -10,11 +10,12 @@ export default function Footer() {
         
         {/* Brand */}
         <div>
-          <h3 className="text-2xl font-bold text-white dark:text-gray-100 mb-4 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-            AI Agents
+          <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-300 mb-4">
+            Niro-AI
           </h3>
-          <p className="text-gray-400 dark:text-gray-500">
-            Smart AI solutions for customer support and personal productivity.
+          <p className="text-gray-400 mb-6 max-w-sm">
+            Building the next generation of autonomous enterprise solutions with Niro-AI. 
+            Automate your business workflows intelligently.
           </p>
         </div>
 
@@ -52,8 +53,8 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="mt-12 border-t border-gray-700 dark:border-gray-600 pt-6 text-center text-gray-500 dark:text-gray-600 text-sm">
-        © {new Date().getFullYear()} AI Agents. All rights reserved. • Built with ❤️ and AI
+      <div className="border-t border-gray-800 mt-12 pt-8 text-center text-sm text-gray-500">
+        &copy; {new Date().getFullYear()} Niro-AI. All rights reserved. &bull; Built with &hearts; and AI
       </div>
     </footer>
   );

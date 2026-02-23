@@ -26,9 +26,9 @@ export default function Pricing() {
             <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"> Amazing</span>
           </h1>
           
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
-            We don't believe in one-size-fits-all pricing. Every business is unique, and your AI solution should be too. 
-            Let's discuss your specific needs and create a custom solution that fits your budget.
+          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            Simple, transparent pricing for every business size.
+            Start automating with Niro-AI today.
           </p>
         </motion.div>
 

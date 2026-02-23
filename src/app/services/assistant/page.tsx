@@ -7,18 +7,11 @@ import {
   Dumbbell, 
   Plane, 
   BookOpen,
-  Heart,
-  Coffee,
-  Car,
   ShoppingCart,
-  Music,
   Mic,
-  Clock,
   Target,
   Lightbulb,
   Zap,
-  Users,
-  Home
 } from "lucide-react";
 import Link from "next/link";
 
@@ -134,11 +127,24 @@ export default function Assistant() {
             <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-6">
               Personal AI Assistant
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-              Your intelligent companion that learns your routines, understands your preferences, 
-              and acts as your personal agent in daily life. More than an assistant - it's like 
-              having a brilliant friend who never forgets and always has your back.
+            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              Niro-AI handles your scheduling, emails, and reminders so you can focus on what matters.
+              Experience true productivity with an AI that works for you.
             </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link 
+                href="/contact"
+                className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105"
+              >
+                Start Free Trial
+              </Link>
+              <Link 
+                href="/pricing"
+                className="px-8 py-4 border-2 border-purple-500 text-purple-500 font-semibold rounded-xl hover:bg-purple-500 hover:text-white transition-all duration-300"
+              >
+                See Personal Plans
+              </Link>
+            </div>
           </div>
         </FadeIn>
 
@@ -215,10 +221,10 @@ export default function Assistant() {
           <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-3xl p-8 md:p-12 text-white mb-16">
             <div className="flex items-center mb-8">
               <Zap className="w-8 h-8 mr-3" />
-              <h2 className="text-3xl font-bold">Acting as Your Personal Agent</h2>
+              <h2 className="text-3xl font-bold">Acting as Your Personal Niro-AI</h2>
             </div>
             <p className="text-xl mb-8 opacity-90">
-              Your AI doesn't just respond - it takes action on your behalf, handling complex tasks autonomously:
+              Your Niro-AI doesn't just respond - it takes action on your behalf, handling complex tasks autonomously:
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {agenticTasks.map((task, index) => (

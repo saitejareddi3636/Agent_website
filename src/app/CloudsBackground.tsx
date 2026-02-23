@@ -1,42 +1,57 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 export default function CloudsBackground() {
-  const [scrollY, setScrollY] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
+    let ticking = false;
+
+    // Mouse move parallax effect
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          if (containerRef.current) {
+            // Calculate mouse position relative to center of screen (-1 to 1)
+            const mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+            const mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+            
+            // Move background slightly opposite to mouse movement for depth effect
+            const x = mouseX * -20; // Max 20px move horizontally
+            const y = mouseY * -20; // Max 20px move vertically
+            
+            containerRef.current.style.transform = `translate3d(${x}px, ${y}px, 0) scale(1.1)`;
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
-
-  // Parallax effect: background moves slower than scroll (0.5x speed)
-  const parallaxOffset = scrollY * 0.5;
 
   return (
     <div 
-      className="fixed inset-0 -z-10 pointer-events-none"
-      style={{
-        transform: `translateY(${parallaxOffset}px)`,
-        transition: 'transform 0.1s ease-out',
-      }}
+      className="fixed inset-0 w-full h-full z-0 pointer-events-none overflow-hidden"
     >
-      {/* Same mountain image - positioned to show sky/clouds throughout */}
       <div 
-        className="absolute inset-0 w-full h-[200vh] bg-cover bg-center bg-no-repeat"
+        ref={containerRef}
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')`,
-          backgroundPosition: 'center top',
+          backgroundImage: `url('/mountain.gif')`,
+          // Ensure the image covers the area nicely
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          transform: 'scale(1.1)', // Initial scale to allow movement
         }}
       />
       
-      {/* Soft dark overlay for text readability */}
+      {/* Gradient overlay for text readability over the image */}
       <div 
-        className="absolute inset-0 bg-gradient-to-b from-gray-900/40 via-gray-900/30 to-gray-900/40"
+        className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40"
       />
     </div>
   );

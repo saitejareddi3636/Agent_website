@@ -8,8 +8,7 @@ import {
   Users, 
   TrendingUp,
   Bot,
-  Shield,
-  Globe
+  Shield
 } from "lucide-react";
 import Link from "next/link";
 
@@ -23,12 +22,12 @@ export default function CustomerSupport() {
     {
       icon: Zap,
       title: "70% Cost Reduction",
-      description: "Replace expensive support staff with AI that works 24/7 without breaks."
+      description: "Replace expensive support teams with Niro-AI that works 24/7 without breaks."
     },
     {
       icon: Clock,
       title: "24/7 Availability",
-      description: "Never miss a customer inquiry - your AI works around the clock."
+      description: "Never miss a customer inquiry - your Niro-AI works around the clock."
     },
     {
       icon: Users,
@@ -38,7 +37,7 @@ export default function CustomerSupport() {
     {
       icon: TrendingUp,
       title: "Smart Learning",
-      description: "AI improves responses over time, learning from successful interactions."
+      description: "Niro-AI improves responses over time, learning from successful interactions."
     },
     {
       icon: Bot,
@@ -70,9 +69,9 @@ export default function CustomerSupport() {
             <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-6">
               AI Customer Support
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Transform your customer service with AI that understands, learns, and delivers 
-              exceptional support experiences 24/7. Reduce costs while improving satisfaction.
+            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              Deliver instant, 24/7 support across all channels. Niro-AI 
+              resolves 80% of customer inquiries without human intervention.
             </p>
           </div>
         </FadeIn>
@@ -102,7 +101,7 @@ export default function CustomerSupport() {
           <div className="bg-gradient-to-r from-blue-500 to-cyan-500 rounded-3xl p-8 md:p-12 text-white mb-16">
             <div className="flex items-center mb-8">
               <Shield className="w-8 h-8 mr-3" />
-              <h2 className="text-3xl font-bold">Why Choose Our AI Customer Support?</h2>
+              <h2 className="text-3xl font-bold">Why Niro-AI for Support?</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {benefits.map((benefit, index) => (

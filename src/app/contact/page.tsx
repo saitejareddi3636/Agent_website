@@ -78,8 +78,7 @@ export default function Contact() {
             Whether you’re curious about features, a free trial, or even press—we’re ready to answer any and all questions.
           </p>
           <div>
-            <p className="text-gray-700"><strong>Email:</strong> hello@aiagents.com</p>
-            <p className="text-gray-700"><strong>Phone:</strong> +1 (555) 123-4567</p>
+            <p className="text-gray-700"><strong>Email:</strong> infoniroai@gmail.com</p>
             <p className="text-gray-700"><strong>Location:</strong> Dallas, TX</p>
           </div>
         </div>

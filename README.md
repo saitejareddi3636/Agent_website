@@ -1,62 +1,76 @@
-# 🤖 AI Agents Website
+# Niro-AI Website
 
-A modern, professional AI startup website built with Next.js 15, featuring dark/light mode, particle animations, and comprehensive service pages for AI agents.
+A modern, professional AI startup website built with Next.js 15, featuring dark/light mode, particle animations, and comprehensive service pages for Niro-AI solutions.
 
-## 🚀 Quick Start
+## Features
 
-### Prerequisites
-- **Node.js 18+** (Check with `node --version`)
-- **npm** or **yarn** package manager
-- **Git** for version control
+- **Next.js 15**: Leveraging the latest features including App Router and Turbopack
+- **Tailwind CSS v4**: Modern utility-first CSS framework
+- **Framer Motion**: Smooth animations and transitions
+- **Dark/Light Mode**: Full theme support with system preference detection
+- **Responsive Design**: Mobile-first approach for all screen sizes
+- **Interactive Elements**: Custom clouds, particles, and parallax effects
+- **Service Pages**: Dedicated pages for each Niro-AI solution type
+- **Blog Section**: Integrated blog structure with initial posts
+- **Contact & Demo**: Fully functional forms and routing
 
-### Installation
+## Getting Started
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/saitejareddi3636/Personal-Agent-Local-.git
-   cd agent-website
-   ```
+First, clone the repository:
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+```bash
+git clone https://github.com/saitejareddi3636/Personal-Agent-Local-.git
+cd niro-ai-website
+```
 
-3. **Run the development server**
-   ```bash
-   npm run dev
-   ```
+Install dependencies:
 
-4. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000)
+```bash
+npm install
+```
 
-## 🎯 Features
+Run the development server:
 
-### ✨ **Modern AI Startup Design**
-- **Particle Background**: Custom floating particles with connecting lines
-- **Dark/Light Mode**: Professional theme switching with persistent storage
-- **Glass Morphism**: Translucent components with backdrop blur effects
-- **Responsive Design**: Mobile-first approach for all devices
+```bash
+npm run dev
+```
 
-### 📄 **Complete Page Structure**
-- **Homepage**: Hero, testimonials, pain points, industries, features, roadmap, FAQ
-- **Service Pages**: Dedicated pages for each AI agent type
-- **Pricing Page**: Three-tier animated pricing cards
-- **Blog System**: Index page + individual post routing
-- **Navigation**: Mobile-responsive with theme toggle
+Open your browser and navigate to [http://localhost:3000](http://localhost:3000).
 
-### 🎨 **Advanced Animations**
-- **Framer Motion**: Smooth page transitions and hover effects
-- **Fade Animations**: Sections animate in as you scroll
-- **Interactive Elements**: Hover effects and micro-interactions
-- **Timeline Animation**: Expandable roadmap with phase details
+## Features
 
-### 🤖 **AI Agent Services**
-1. **AI Customer Support** - 24/7 intelligent customer service
-2. **AI Receptionist** - Professional phone handling and booking
-3. **Personal AI Assistant** - Daily life management and personalization
+### Modern AI Startup Design
+- Particle Background: Custom floating particles with connecting lines
+- Dark/Light Mode: Professional theme switching with persistent storage
+- Glass Morphism: Translucent components with backdrop blur effects
+- Responsive Design: Mobile-first approach for all devices
 
-## 🛠️ Tech Stack
+### Complete Page Structure
+- Homepage: Hero, testimonials, pain points, industries, features, roadmap, FAQ
+- Service Pages: Dedicated pages for each AI agent type
+- Pricing Page: Three-tier animated pricing cards
+- Blog System: Index page + individual post routing
+- Navigation: Mobile-responsive with theme toggle
+
+### Advanced Animations
+- Framer Motion: Smooth page transitions and hover effects
+- Fade Animations: Sections animate in as you scroll
+- Interactive Elements: Hover effects and micro-interactions
+- Timeline Animation: Expandable roadmap with phase details
+
+### 🤖 **Niro-AI Solutions**
+
+- **Customer Support**: 24/7 intelligent chat and query resolution
+- **Receptionist**: Automated call handling and scheduling
+- **Personal Assistant**: Individual task management and organization
+- **Enterprise AI**: Scalable solutions for large organizations
+
+### 📝 **Blog & Resources**
+
+- industry insights
+- Implementation guides
+
+## Tech Stack
 
 - **Framework**: Next.js 15.5.3 with TypeScript
 - **Styling**: Tailwind CSS with custom color palette
@@ -65,10 +79,10 @@ A modern, professional AI startup website built with Next.js 15, featuring dark/
 - **Icons**: Lucide React for consistent iconography
 - **Theme**: next-themes for dark/light mode
 
-## 📁 Project Structure
+## Project Structure
 
 ```
-agent-website/
+niro-ai-website/
 ├── src/
 │   ├── app/
 │   │   ├── blog/                 # Blog system
@@ -95,7 +109,7 @@ agent-website/
 └── README.md                     # This file
 ```
 
-## 🎨 Color Palette
+## Color Palette
 
 - **Electric Cyan**: `#00E7FF` - Primary accent
 - **Cyber Purple**: `#8A0A8A` - Secondary accent
@@ -103,7 +117,7 @@ agent-website/
 - **Aurora Blue**: `#005B96` - Professional blue
 - **Accent Yellow**: `#FFD700` - Highlight color
 
-## 🚀 Available Scripts
+## Available Scripts
 
 ```bash
 # Development server
@@ -119,7 +133,7 @@ npm start
 npm run lint
 ```
 
-## 🔧 Customization
+## Customization
 
 ### Adding New Service Pages
 1. Create folder in `src/app/services/[service-name]/`
@@ -144,7 +158,7 @@ import FadeIn from "../components/FadeIn";
 </FadeIn>
 ```
 
-## 🌐 Deployment
+## Deployment
 
 ### Vercel (Recommended)
 1. Push code to GitHub
@@ -159,7 +173,7 @@ import FadeIn from "../components/FadeIn";
 1. Build: `npm run build`
 2. Upload `out` folder to your web server
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Node.js Version Issues
 ```bash
@@ -179,7 +193,7 @@ node --version
 - Ensure Framer Motion is installed: `npm install framer-motion`
 - Check browser compatibility
 
-## 📞 Support
+## Support
 
 ### Common Issues
 1. **Port 3000 in use**: Change port with `npm run dev -- -p 3001`
@@ -191,7 +205,7 @@ node --version
 - Review [Tailwind CSS Docs](https://tailwindcss.com/docs)
 - Framer Motion [Animation Guide](https://www.framer.com/motion/)
 
-## 🎉 What You'll See
+## What You'll See
 
 ### Homepage Features
 - ✅ Animated particle background
@@ -216,7 +230,7 @@ node --version
 - ✅ Loading animations
 - ✅ Hover effects throughout
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create feature branch: `git checkout -b feature-name`
@@ -224,10 +238,10 @@ node --version
 4. Push to branch: `git push origin feature-name`
 5. Submit pull request
 
-## 📝 License
+## License
 
 This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-**Built with ❤️ and AI** • [Live Demo](https://your-domain.com) • [Report Issues](https://github.com/saitejareddi3636/Personal-Agent-Local-/issues)
+**Built with ❤️ and Niro-AI** • [Live Demo](https://your-domain.com) • [Report Issues](https://github.com/saitejareddi3636/Personal-Agent-Local-/issues)
